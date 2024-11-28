@@ -1,33 +1,21 @@
 package entities;
 
-public class Item {
+public abstract class Item {
     private String id;
-    private int height;
-    private int width;
-    private int depth;
+    protected double weight;
 
-    public Item(String id, int height, int width, int depth) {
+    public Item(String id, double weight) {
         this.id = id;
-        this.height = height;
-        this.width = width;
-        this.depth = depth;
+        this.weight = weight;
     }
 
-    // Getters
+    public double getWeight() {
+        return weight;
+    }
+
     public String getId() {
         return id;
     }
 
-    public int getHeight() {
-        return height;
-    }
-
-    public int getWidth() {
-        return width;
-    }
-
-    public int getDepth() {
-        return depth;
-    }
-
+    public abstract double getVolume();
 }
