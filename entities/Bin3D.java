@@ -1,13 +1,10 @@
 package entities;
 
-// inheritance classes for items
-public class Item1D extends Item {
-
+public class Bin3D extends Bin {
     private int length;
 
-    public Item1D(String id, double weight, int length) {
-        super(id, weight);
-        this.length = length;
+    public Bin3D(String id) {
+        super(id);
     }
 
     @Override
@@ -19,5 +16,4 @@ public class Item1D extends Item {
     public int getLength() {
         return length;
     }
-
 }
