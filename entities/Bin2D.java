@@ -1,19 +1,20 @@
 package entities;
 
-public class Bin2D extends Bin {
-    private int length;
+public class Bin2D extends Bin<Item2D> {
+    private int width;
 
-    public Bin2D(String id) {
-        super(id);
+    public Bin2D(String id, int length, int width) {
+        super(id, length);
+        this.width = width;
     }
 
     @Override
     public double getVolume() {
-        return length;
+        return super.getLength() * width;
     }
 
     // Getters
-    public int getLength() {
-        return length;
+    public int getWidth() {
+        return width;
     }
 }
