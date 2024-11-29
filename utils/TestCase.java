@@ -3,39 +3,41 @@ package utils;
 import entities.*;
 import java.util.List;
 
-public class TestCase {
+public class TestCase<B extends Bin<?>, I extends Item> {
+    private String binType;
     private String name;
-    private int numberOfBins;
-    private int numberOfItems;
-    private List<Bin> bins;
-    private List<Item> items;
+    private List<B> bins;
+    private List<I> items;
 
-    public TestCase(String name, int numberOfBins, int numberOfItems, List<Bin> bins, List<Item> items) {
+    public TestCase(String binType, String name, List<B> bins, List<I> items) {
+        this.binType = binType;
         this.name = name;
-        this.numberOfBins = numberOfBins;
-        this.numberOfItems = numberOfItems;
         this.bins = bins;
         this.items = items;
     }
 
     // Getters
+    public String getBinType() {
+        return binType;
+    }
+
     public String getName() {
         return name;
     }
 
     public int getNumberOfBins() {
-        return numberOfBins;
+        return bins.size();
     }
 
     public int getNumberOfItems() {
-        return numberOfItems;
+        return items.size();
     }
 
-    public List<Bin> getBins() {
+    public List<B> getBins() {
         return bins;
     }
 
-    public List<Item> getItems() {
+    public List<I> getItems() {
         return items;
     }
 
@@ -44,19 +46,11 @@ public class TestCase {
         this.name = name;
     }
 
-    public void setNumberOfBins(int numberOfBins) {
-        this.numberOfBins = numberOfBins;
-    }
-
-    public void setNumberOfItems(int numberOfItems) {
-        this.numberOfItems = numberOfItems;
-    }
-
-    public void setItems(List<Item> items) {
-        this.items = items;
-    }
-
-    public void setBins(List<Bin> bins) {
+    public void setBins(List<B> bins) {
         this.bins = bins;
+    }
+
+    public void setItems(List<I> items) {
+        this.items = items;
     }
 }
