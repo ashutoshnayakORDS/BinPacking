@@ -1,6 +1,5 @@
-package utils;
+package entities;
 
-import entities.*;
 import java.util.List;
 
 public class TestCase<B extends Bin<?>, I extends Item> {
