@@ -31,7 +31,30 @@ public class TestCaseGenerator3D {
 
                 // For each type (1 to 8)
                 for (int type = 1; type <= NUM_TYPES; type++) {
-                    writer.write(String.format("---- Test Type: %d ----\n", type));
+                    int BL, BW, BH;
+                    switch (type) {
+                        case 1:
+                        case 2:
+                        case 3:
+                        case 4:
+                        case 5:
+                            BW = BH = BL = 100; // Cases 1-5: Bin dimensions are all 100
+                            break;
+                        case 6:
+                            BW = BH = BL = 10; // Case 6: Bin dimensions are all 10
+                            break;
+                        case 7:
+                            BW = BH = BL = 40; // Case 7: Bin dimensions are all 40
+                            break;
+                        case 8:
+                            BW = BH = BL = 100; // Case 8: Bin dimensions are all 100
+                            break;
+                        default:
+                            throw new IllegalArgumentException("Invalid case: " + type);
+                    }
+
+
+                    writer.write(String.format("---- Test Type: %d : %d %d %d ----\n", type, BW, BH, BL));
                     
 
                     // Generate 10 test cases for each type
@@ -43,13 +66,13 @@ public class TestCaseGenerator3D {
 
                         // Generate items
                         for (int i = 1; i <= n; i++) {
-                            items.add(generateRandomItem(i, type));
+                            items.add(generateRandomItem(i, type, BL, BW, BH));
                         }
 
                         // Write items to file
                         for (Item3D item : items) {
-                            writer.write(String.format("Item-%s: [L=%d, W=%d, H=%d]\n",
-                                item.getId(), item.getLength(), item.getWidth(), item.getHeight()));
+                            writer.write(String.format("Item-%s: [W=%d, H=%d, L=%d]\n",
+                                item.getId(), item.getWidth(), item.getHeight(), item.getLength()));
 
                         }
                         writer.write("\n");
@@ -72,9 +95,8 @@ public class TestCaseGenerator3D {
      * @return Item3D object.
      */
 
-     private static Item3D generateRandomItem(int id, int type) {
+     private static Item3D generateRandomItem(int id, int type, int BL, int BW, int BH) {
         int w = 1, h = 1, l = 1;
-        int BL, BW, BH;
     
         switch (type) {
             // Martello-Vigo Types (1-5)
