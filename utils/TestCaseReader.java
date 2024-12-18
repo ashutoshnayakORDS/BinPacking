@@ -32,10 +32,15 @@ public class TestCaseReader {
 
             // Detect test type and bin dimensions
             if (line.startsWith("---- Test Type")) {
-                String[] parts = line.split(":")[1].trim().split(" ");
-                binWidth = Integer.parseInt(parts[0]);
-                binHeight = Integer.parseInt(parts[1]);
-                binLength = Integer.parseInt(parts[2]);
+                // Extract everything after the first colon
+                String[] mainParts = line.split(":");
+                String typeAndDims = mainParts[2].trim(); // The part after the second ":"
+            
+                // Split bin dimensions
+                String[] dims = typeAndDims.split(" ");
+                binWidth = Integer.parseInt(dims[0]);
+                binHeight = Integer.parseInt(dims[1]);
+                binLength = Integer.parseInt(dims[2]);
             }
 
             // Detect a new test case header

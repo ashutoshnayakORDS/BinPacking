@@ -1,53 +1,42 @@
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import entities.*;
 // import utils.TestCaseGenerator3D;
+import utils.TestCaseReader;
 
 public class App {
     public static void main(String[] args) {
 
-
         // Generate all 320 test cases
-        //String outputFile = "3dbpp_testcases.txt";
+        // String outputFile = "3dbpp_testcases.txt";
         // TestCaseGenerator3D.generateAllTestCases(outputFile);
 
-        List<TestCase<? extends Bin<?>, ? extends Item>> testCases = new ArrayList<>();
+        String inputFile = "3dbpp_testcases.txt"; // Path to the input file
+        List<TestCase<Bin3D, Item3D>> testCases = new ArrayList<>();
+        try {
+            // Step 1: Read test cases from the input file
+            testCases = TestCaseReader.readTestCases(inputFile);
 
-        String name = "TestCase";
+            // Step 2: Iterate through test cases
+            for (TestCase<Bin3D, Item3D> testCase : testCases) {
+                // Step 3: Print Test Case Details
+                System.out.println("Test Name: " + testCase.getName());
+                Bin3D bin = testCase.getBins().get(0); // Assuming only one bin per test case
+                System.out.println("Bin Dimensions: " + bin.getLength() + "x" + bin.getWidth() + "x" + bin.getHeight());
+                System.out.println("Number of Items: " + testCase.getNumberOfItems());
+                System.out.println("Items:");
+                for (Item3D item : testCase.getItems()) {
+                    System.out.println("  Item-" + item.getId() + ": [W=" + item.getWidth() +
+                                       ", H=" + item.getHeight() + ", L=" + item.getLength() + "]");
+                }
+                System.out.println();
+            }
 
-        // 3D Test Case
-        List<Bin3D> bins3D = new ArrayList<>();
-        List<Item3D> items3D = new ArrayList<>();
-
-        // Add 2 bins
-        bins3D.add(new Bin3D("Bin3D-1", 10, 5, 6));
-        bins3D.add(new Bin3D("Bin3D-2", 8, 4, 5));
-
-        // Add 3 items
-        items3D.add(new Item3D("Item3D-1", 1.0f, 2, 3, 4));
-        items3D.add(new Item3D("Item3D-2", 1.0f, 4, 2, 3));
-        items3D.add(new Item3D("Item3D-3", 1.0f, 3, 3, 3));
-
-        // Create and add 3D test case
-        testCases.add(new TestCase<>("3D", name, bins3D, items3D));
-
-        // // 2D Test Case
-        // List<Bin2D> bins2D = new ArrayList<>();
-        // List<Item2D> items2D = new ArrayList<>();
-
-        // // Add 2 bins
-        // bins2D.add(new Bin2D("Bin2D-1", 10, 5));
-        // bins2D.add(new Bin2D("Bin2D-2", 8, 4));
-
-        // // Add 3 items
-        // items2D.add(new Item2D("Item2D-1", 1.0, 2, 3));
-        // items2D.add(new Item2D("Item2D-2", 1.0, 4, 2));
-        // items2D.add(new Item2D("Item2D-3", 1.0, 5, 1));
-
-        // // Create and add 2D test case
-        // testCases.add(new TestCase<>("2D", name, bins2D, items2D));
-            
+        } catch (IOException e) {
+            System.err.println("Error reading test cases: " + e.getMessage());
+        }
 
         // Confirm test cases created
         System.out.println("Total Test Cases Created: " + testCases.size());
