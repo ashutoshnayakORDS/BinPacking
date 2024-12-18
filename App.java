@@ -2,9 +2,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import entities.*;
+import utils.TestCaseGenerator3D;
 
 public class App {
     public static void main(String[] args) {
+
+        String outputFile = "3dbpp_testcases.txt";
+
+        // Generate all 320 test cases
+        TestCaseGenerator3D.generateAllTestCases(outputFile);
+
         List<TestCase<? extends Bin<?>, ? extends Item>> testCases = new ArrayList<>();
 
         String name = "TestCase";
