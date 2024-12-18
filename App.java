@@ -2,15 +2,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import entities.*;
-import utils.TestCaseGenerator3D;
+// import utils.TestCaseGenerator3D;
 
 public class App {
     public static void main(String[] args) {
 
-        String outputFile = "3dbpp_testcases.txt";
 
         // Generate all 320 test cases
-        TestCaseGenerator3D.generateAllTestCases(outputFile);
+        //String outputFile = "3dbpp_testcases.txt";
+        // TestCaseGenerator3D.generateAllTestCases(outputFile);
 
         List<TestCase<? extends Bin<?>, ? extends Item>> testCases = new ArrayList<>();
 
@@ -25,9 +25,9 @@ public class App {
         bins3D.add(new Bin3D("Bin3D-2", 8, 4, 5));
 
         // Add 3 items
-        items3D.add(new Item3D("Item3D-1", 1.0, 2, 3, 4));
-        items3D.add(new Item3D("Item3D-2", 1.0, 4, 2, 3));
-        items3D.add(new Item3D("Item3D-3", 1.0, 3, 3, 3));
+        items3D.add(new Item3D("Item3D-1", 1.0f, 2, 3, 4));
+        items3D.add(new Item3D("Item3D-2", 1.0f, 4, 2, 3));
+        items3D.add(new Item3D("Item3D-3", 1.0f, 3, 3, 3));
 
         // Create and add 3D test case
         testCases.add(new TestCase<>("3D", name, bins3D, items3D));

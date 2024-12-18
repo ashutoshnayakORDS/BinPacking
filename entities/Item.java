@@ -2,10 +2,10 @@ package entities;
 
 public abstract class Item {
     private String id;
-    private double weight;
+    private float weight;
     private int length;
 
-    public Item(String id, double weight, int length) {
+    public Item(String id, float weight, int length) {
         this.id = id;
         this.weight = weight;
         this.length = length;

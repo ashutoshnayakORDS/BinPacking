@@ -195,7 +195,7 @@ public class TestCaseGenerator3D {
                 break;
         }
     
-        return new Item3D("Item3D-" + id, 1.0, w, h, l);
+        return new Item3D("Item3D-" + id, 1.0f, w, h, l);
     }
     
     /**

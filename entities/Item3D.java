@@ -5,7 +5,7 @@ public class Item3D extends Item2D {
 
     private int height;
 
-    public Item3D(String id, double weight, int length, int width, int height) {
+    public Item3D(String id, float weight, int length, int width, int height) {
         super(id, weight, length, width);
         this.height = height;
     }
